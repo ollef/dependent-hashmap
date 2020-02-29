@@ -1,0 +1,33 @@
+name:                dependent-hashmap
+version:             0.1.0.0
+#synopsis:
+#description:
+homepage:            https://github.com/ollef/dependent-hashmap#readme
+license:             BSD3
+author:              Olle Fredriksson
+maintainer:          fredriksson.olle@gmail.com
+copyright:           2020 Olle Fredriksson
+category:            Data
+extra-source-files:
+- README.md
+
+ghc-options:
+  - -Wall
+  - -Wcompat
+  - -Widentities
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wmissing-home-modules
+  - -Wpartial-fields
+  - -Wredundant-constraints
+  - -Wtabs
+
+dependencies:
+  - base >= 4.7 && < 5
+  - constraints-extras >= 0.3
+  - dependent-sum >= 0.6
+  - hashable
+  - unordered-containers
+
+library:
+  source-dirs: src
