@@ -1,6 +1,6 @@
 # dependent-hashmap
 
-This is hash map library where the keys can specify the type of value that is associated with them with type indices.
+This is hash map library where the keys can specify the type of value that is associated with them by using type indices.
 
 This library is to
 [dependent-map](https://github.com/mokus0/dependent-map) what `Data.HashMap.Lazy` is to `Data.Map`.
