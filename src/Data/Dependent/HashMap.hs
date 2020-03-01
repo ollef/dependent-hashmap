@@ -5,7 +5,92 @@
 {-# language StandaloneDeriving #-}
 {-# language TypeFamilies #-}
 {-# language UndecidableInstances #-}
-module Data.Dependent.HashMap where
+
+-- | A map from hashable keys to values where the keys can specify the type of
+-- value that is associated with them. A map cannot contain duplicate keys;
+-- each key can map to at most one value. A 'DHashMap' makes no guarantees as to
+-- the order of its elements.
+--
+-- The interface mirrors that of 'HashMap', with small adjustments and
+-- additions.  The implementation is a thin layer on top of 'HashMap'.
+--
+-- The implementation is based on /hash array mapped tries/.  A
+-- 'DHashMap' is often faster than other tree-based set types,
+-- especially when key comparison is expensive, as in the case of
+-- strings.
+--
+-- Many operations have a average-case complexity of /O(log n)/.  The
+-- implementation uses a large base (i.e. 16) so in practice these
+-- operations are constant time.
+module Data.Dependent.HashMap
+  ( DHashMap
+  -- * Construction
+  , empty
+  , singleton
+  -- * Basic interface
+  , null
+  , size
+  , member
+  , lookup
+  , lookupDefault
+  , (!)
+  , insert
+  , insertWith
+  , delete
+  , adjust
+  , update
+  , alter
+  , alterF
+  , alterLookup
+  -- * Union
+  , union
+  , unionWith
+  , unionWithKey
+  , unions
+  , unionsWith
+  , unionsWithKey
+  -- * Transformations
+  , map
+  , mapWithKey
+  , traverse
+  , traverseWithKey
+  -- * Difference and intersection
+  , difference
+  , differenceWith
+  , differenceWithKey
+  , intersection
+  , intersectionWith
+  , intersectionWithKey
+  -- * Folds
+  , foldMap
+  , foldMapWithKey
+  , foldl
+  , foldlWithKey
+  , foldl'
+  , foldlWithKey'
+  , foldr
+  , foldrWithKey
+  -- * Filter
+  , filter
+  , filterWithKey
+  , mapMaybe
+  , mapMaybeWithKey
+  -- * Conversions
+  , keys
+  , elems
+  -- * Lists
+  , toList
+  , fromList
+  , fromListWith
+  , fromListWithKey
+  -- * Re-exports
+  , DSum ((:=>))
+  , Some (Some)
+  )
+  where
+
+import Prelude hiding (lookup, null, map, traverse, foldMap, foldl, foldr, filter)
+import qualified Prelude
 
 import Data.Constraint.Extras
 import Data.Dependent.Sum
@@ -21,9 +106,6 @@ import Text.Read
 
 -- | A map from keys @k@ to values @v@ where @k@ and @v@ are indexed types and
 -- where every key-value pair is indexed by the same type.
---
--- The interface mirrors that of 'HashMap', with small adjustments and
--- additions.  The implementation is a thin layer on top of 'HashMap'.
 newtype DHashMap k v =
   DHashMap (HashMap.HashMap (Some k) (DSum k v))
 
