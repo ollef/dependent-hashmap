@@ -596,6 +596,7 @@ foldrWithKey f base (DHashMap h) =
 
 -------------------------------------------------------------------------------
 -- * Filter
+
 -- | /O(n)/ Filter this map by retaining values that satisfy a predicate.
 filter :: (forall a. v a -> Bool) -> DHashMap k v -> DHashMap k v
 filter p (DHashMap h) =
