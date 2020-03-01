@@ -289,7 +289,7 @@ alterF f k (DHashMap h) =
 -- | /O(log n)/  @'alterLookup' f k map@ looks up the value at @k@, if any,
 -- and 'alter's it, in one operation.
 --
--- @'alterLookup' f k map = ('lookup' k map, 'alter' f map)@
+-- @'alterLookup' f k map = ('lookup' k map, 'alter' f k map)@
 alterLookup
   :: (GEq k, Hashable (Some k))
   => (Maybe (v a) -> Maybe (v a))
