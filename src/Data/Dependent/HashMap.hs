@@ -125,7 +125,7 @@ instance (GEq k, Hashable (Some k)) => IsList (DHashMap k v) where
   toList =
     Data.Dependent.HashMap.toList
 
-instance (GCompare k, GRead k, Has' Read k v, Hashable (Some k)) => Read (DHashMap k v) where
+instance (GEq k, GRead k, Has' Read k v, Hashable (Some k)) => Read (DHashMap k v) where
   readPrec =
     parens $ prec 10 $ do
       Ident "fromList" <- lexP
