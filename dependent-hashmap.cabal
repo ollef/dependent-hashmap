@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: fecb250355702f8005e92c3db2a11a015bbf10ece7d997343bb2be1bfaeb7980
+-- hash: b1b80454bb1a4bd3fb3e2976fb1f71a32f82a469a194644d39d6413ad4fdeac7
 
 name:           dependent-hashmap
-version:        0.1.0.0
+version:        0.1.0.1
 synopsis:       Dependent hash maps
 description:    Provides @DHashMap@, a type for hash maps where the keys can specify the type of value that is associated with them.
 category:       Data

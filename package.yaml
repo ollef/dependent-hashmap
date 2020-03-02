@@ -1,5 +1,5 @@
 name:                dependent-hashmap
-version:             0.1.0.0
+version:             0.1.0.1
 synopsis:            Dependent hash maps
 description:         Provides @DHashMap@, a type for hash maps where the keys can specify the type of value that is associated with them.
 homepage:            https://github.com/ollef/dependent-hashmap#readme
