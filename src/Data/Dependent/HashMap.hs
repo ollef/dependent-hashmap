@@ -96,7 +96,7 @@ import qualified Prelude
 import Data.Constraint.Extras
 import Data.Dependent.Sum
 import qualified Data.Foldable as Foldable
-import Data.GADT.Compare
+import Data.GADT.Compare (GCompare, GEq, geq)
 import Data.GADT.Show
 import Data.Hashable
 import qualified Data.HashMap.Lazy as HashMap
@@ -104,6 +104,7 @@ import qualified Data.HashMap.Lazy as HashMap
 import Data.Semigroup
 #endif
 import Data.Some
+import Data.Type.Equality
 import GHC.Exts (IsList(Item))
 import qualified GHC.Exts
 import Text.Read
