@@ -1,3 +1,4 @@
+{-# language CPP #-}
 {-# language FlexibleContexts #-}
 {-# language GADTs #-}
 {-# language GeneralizedNewtypeDeriving #-}
@@ -99,6 +100,9 @@ import Data.GADT.Compare
 import Data.GADT.Show
 import Data.Hashable
 import qualified Data.HashMap.Lazy as HashMap
+#if !MIN_VERSION_base(4,11,0)
+import Data.Semigroup
+#endif
 import Data.Some
 import GHC.Exts (IsList(Item))
 import qualified GHC.Exts
