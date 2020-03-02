@@ -10,9 +10,7 @@ module Main where
 import Control.Monad
 import Control.Monad.Identity
 import Data.Maybe
-import Data.Constraint
-import Data.Constraint.Compose
-import Data.Constraint.Extras
+import Data.Constraint.Extras.TH
 import Data.GADT.Compare
 import Data.GADT.Show
 import Data.Hashable
@@ -58,12 +56,7 @@ instance GRead Key where
       )
       s
 
-instance (c (f Int), c (f String)) => ArgDict (ComposeC c f) Key where
-  type ConstraintsFor Key (ComposeC c f) = ()
-  argDict key =
-    case key of
-      IntKey {} -> Dict
-      StringKey {} -> Dict
+deriveArgDict ''Key
 
 instance GEq Key where
   geq (IntKey i1) (IntKey i2)
