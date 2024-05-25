@@ -14,6 +14,7 @@ import Data.Constraint.Extras.TH
 import Data.GADT.Compare
 import Data.GADT.Show
 import Data.Hashable
+import Data.Type.Equality
 import Hedgehog
 import qualified Hedgehog.Gen as Gen
 import qualified Hedgehog.Range as Range
@@ -26,6 +27,18 @@ data Key v where
   StringKey :: String -> Key String
 
 deriving instance Show (Key v)
+
+deriveArgDict ''Key
+
+instance GEq Key where
+  geq (IntKey i1) (IntKey i2)
+    | i1 == i2 =
+      Just Refl
+  geq (StringKey s1) (StringKey s2)
+    | s1 == s2 =
+      Just Refl
+  geq _ _ =
+    Nothing
 
 instance GShow Key where
   gshowsPrec = showsPrec
@@ -40,7 +53,7 @@ instance GRead Key where
   greadsPrec d s =
     readParen (d > 10)
       (\s' ->
-        [ (GReadResult $ \f -> f $ IntKey i, s''')
+        [ (mkGReadResult $ IntKey i, s''')
         | ("IntKey", s'') <- lex s'
         , (i, s''') <- readsPrec (10+1) s''
         ]
@@ -49,24 +62,12 @@ instance GRead Key where
       ++
     readParen (d > 10)
       (\s' ->
-        [ (GReadResult $ \f -> f $ StringKey m, s''')
+        [ (mkGReadResult $ StringKey m, s''')
         | ("StringKey", s'') <- lex s'
         , (m, s''') <- readsPrec (10+1) s''
         ]
       )
       s
-
-deriveArgDict ''Key
-
-instance GEq Key where
-  geq (IntKey i1) (IntKey i2)
-    | i1 == i2 =
-      Just Refl
-  geq (StringKey s1) (StringKey s2)
-    | s1 == s2 =
-      Just Refl
-  geq _ _ =
-    Nothing
 
 int :: Gen Int
 int = Gen.int (Range.linear 0 100)
