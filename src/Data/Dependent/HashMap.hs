@@ -90,7 +90,7 @@ module Data.Dependent.HashMap
   )
   where
 
-import Prelude hiding (lookup, null, map, traverse, foldMap, foldl, foldr, filter)
+import Prelude hiding (lookup, null, map, traverse, foldMap, foldl, foldl', foldr, filter)
 import qualified Prelude
 
 import Data.Constraint.Extras
