@@ -1,6 +1,6 @@
-resolver: lts-15.1
+resolver: lts-23.18
 packages:
 - .
-extra-deps:
-- dependent-sum-0.6.2.0
-- constraints-extras-0.3.0.2
+# extra-deps:
+# - dependent-sum-0.6.2.0
+# - constraints-extras-0.3.0.2
