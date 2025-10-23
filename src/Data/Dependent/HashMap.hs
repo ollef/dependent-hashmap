@@ -6,6 +6,7 @@
 {-# language StandaloneDeriving #-}
 {-# language TypeFamilies #-}
 {-# language UndecidableInstances #-}
+{-# language NoImplicitPrelude #-}
 
 -- | A map from hashable keys to values where the keys can specify the type of
 -- value that is associated with them. A map cannot contain duplicate keys;
